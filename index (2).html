@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Mind Quest - Master Your Financial Psychology</title>
+    <meta name="description" content="Game interaktif literasi keuangan berdasarkan buku Psychology of Money. 35 checkpoint, 7 badges, dan sertifikat resmi. Gratis!">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Money Mind Quest - Master Your Financial Psychology">
+    <meta property="og:description" content="Game interaktif literasi keuangan. Complete 35 checkpoint, earn certificate!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://moneymindquest.vercel.app">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:wght@700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --accent: #f59e0b;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f1f5f9;
+        }
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--dark);
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            opacity: 0.1;
+            z-index: -1;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { transform: translateX(0) translateY(0); }
+            50% { transform: translateX(-20px) translateY(-20px); }
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 100;
+        }
+        
+        .logo {
+            font-family: 'Fraunces', serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .nav-cta {
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            animation: fadeInUp 1s ease;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .badge-small {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.4);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        
+        h1 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea, #ec4899, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: clamp(1rem, 3vw, 1.25rem);
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+        
+        .btn-primary {
+            padding: 1.25rem 3rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(99, 102, 241, 0.5);
+        }
+        
+        .btn-secondary {
+            padding: 1.25rem 3rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        /* Floating Badges */
+        .floating-badges {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .badge-float {
+            position: absolute;
+            font-size: 3rem;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.3;
+        }
+        
+        .badge-float:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .badge-float:nth-child(2) { top: 60%; left: 15%; animation-delay: 1s; }
+        .badge-float:nth-child(3) { top: 30%; right: 10%; animation-delay: 2s; }
+        .badge-float:nth-child(4) { top: 70%; right: 15%; animation-delay: 3s; }
+        .badge-float:nth-child(5) { top: 50%; left: 50%; animation-delay: 4s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s, background 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea, #ec4899);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        /* Features Section */
+        .features {
+            max-width: 1200px;
+            margin: 8rem auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 600px;
+            margin: 0 auto 4rem;
+            font-size: 1.1rem;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(99, 102, 241, 0.4);
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-desc {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.6;
+        }
+        
+        /* Certificate Section */
+        .certificate {
+            max-width: 1000px;
+            margin: 8rem auto;
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .certificate-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .certificate h2 {
+            font-family: 'Fraunces', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .certificate p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        /* Testimonial */
+        .testimonial {
+            max-width: 800px;
+            margin: 6rem auto;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        
+        .quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .author {
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 600;
+        }
+        
+        /* CTA Section */
+        .final-cta {
+            max-width: 800px;
+            margin: 8rem auto 6rem;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+        }
+        
+        .final-cta p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            color: var(--secondary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+            
+            .nav-cta {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.85rem;
+            }
+            
+            .hero {
+                padding: 5rem 1rem 3rem;
+            }
+            
+            .cta-group {
+                flex-direction: column;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                padding: 1rem 2rem;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .floating-badges {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">💰 Money Mind Quest</div>
+        <button class="nav-cta" onclick="window.location.href='https://moneymindquest.vercel.app/'">Mulai Sekarang →</button>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="floating-badges">
+            <div class="badge-float">🧠</div>
+            <div class="badge-float">💰</div>
+            <div class="badge-float">📈</div>
+            <div class="badge-float">🎯</div>
+            <div class="badge-float">🥇</div>
+        </div>
+        
+        <div class="hero-content">
+            <div class="badge-small">✨ Berdasarkan Psychology of Money</div>
+            
+            <h1>
+                Master Your<br>
+                <span class="gradient-text">Financial Psychology</span>
+            </h1>
+            
+            <p class="subtitle">
+                Game interaktif yang mengubah cara Anda memahami uang. 
+                35 checkpoint actionable, 7 badges prestasi, dan sertifikat resmi. 
+                100% gratis, no ads, no bullshit.
+            </p>
+            
+            <div class="cta-group">
+                <button class="btn-primary" onclick="window.location.href='https://moneymindquest.vercel.app/'">
+                    🎮 Mulai Game Gratis
+                </button>
+                <button class="btn-secondary" onclick="scrollToFeatures()">
+                    Pelajari Lebih Lanjut
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-number">35</div>
+            <div class="stat-label">Checkpoint Actionable</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">7</div>
+            <div class="stat-label">Badge Prestasi</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">15-20</div>
+            <div class="stat-label">Menit untuk Complete</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Gratis Selamanya</div>
+        </div>
+    </div>
+    
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title">Kenapa Money Mind Quest?</h2>
+        <p class="section-subtitle">
+            Bukan sekadar teori. Ini adalah blueprint praktis untuk transformasi finansial Anda.
+        </p>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Actionable, Bukan Teori</h3>
+                <p class="feature-desc">
+                    Setiap checkpoint adalah tindakan konkret yang bisa Anda mulai hari ini. 
+                    Dari mindset hingga eksekusi, semua terukur.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3 class="feature-title">Berbasis Riset</h3>
+                <p class="feature-desc">
+                    Dikurasi dari "Psychology of Money" by Morgan Housel - 
+                    buku bestseller Wall Street Journal tentang psikologi keuangan.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🎮</div>
+                <h3 class="feature-title">Gamified Learning</h3>
+                <p class="feature-desc">
+                    5 level tantangan, 7 badge prestasi, rank system, dan achievement tracking. 
+                    Belajar sambil bermain, completion rate 60%+
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📜</div>
+                <h3 class="feature-title">Sertifikat Resmi</h3>
+                <p class="feature-desc">
+                    Download sertifikat completion dengan nama Anda. 
+                    Perfect untuk LinkedIn, CV, atau portfolio profesional.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3 class="feature-title">Mobile Friendly</h3>
+                <p class="feature-desc">
+                    Responsive design yang sempurna di desktop, tablet, dan mobile. 
+                    Main kapan saja, di mana saja, progress tersimpan otomatis.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3 class="feature-title">Privacy First</h3>
+                <p class="feature-desc">
+                    No ads, no tracking, no data selling. 
+                    Semua data tersimpan di browser Anda. Full data ownership.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Certificate Section -->
+    <section class="certificate">
+        <div class="certificate-icon">🏆</div>
+        <h2>Earn Your Certificate</h2>
+        <p>
+            Selesaikan 35 checkpoint dan dapatkan sertifikat resmi dengan nama Anda. 
+            Tunjukkan ke dunia bahwa Anda serius tentang literasi keuangan.
+        </p>
+        <button class="btn-primary" onclick="window.location.href='https://moneymindquest.vercel.app/'">
+            Mulai Journey Anda
+        </button>
+    </section>
+    
+    <!-- Testimonial -->
+    <section class="testimonial">
+        <div class="quote">
+            "Kesuksesan finansial bukan tentang seberapa pintar Anda, 
+            tapi seberapa baik Anda berperilaku. Dan perilaku itu sulit diajarkan, 
+            bahkan kepada orang yang sangat cerdas."
+        </div>
+        <div class="author">— Morgan Housel, Psychology of Money</div>
+    </section>
+    
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <h2>Siap Transform Your Money Mindset?</h2>
+        <p>
+            Join ribuan orang yang sudah mengubah cara mereka memahami uang. 
+            Gratis. No catch. Start now.
+        </p>
+        <button class="btn-primary" onclick="window.location.href='https://moneymindquest.vercel.app/'" style="font-size: 1.2rem; padding: 1.5rem 4rem;">
+            🚀 Mulai Sekarang - Gratis!
+        </button>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <p>
+            Developed with ❤️ by <strong>Muhidin</strong> • 
+            Powered by <strong>Claude AI</strong> • 
+            Inspired by <strong>Psychology of Money</strong> by Morgan Housel
+        </p>
+        <p style="margin-top: 1rem;">
+            © 2025-2026 Money Mind Quest. All Rights Reserved.
+        </p>
+    </footer>
+    
+    <script>
+        function scrollToFeatures() {
+            document.getElementById('features').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+    </script>
+</body>
+</html>
